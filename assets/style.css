@@ -1,0 +1,12 @@
+html,
+body {
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    background-color: #F6F6F6;
+}
+.nav li a.active{
+    color: #5D5FEF !important;
+}
+.main_menu li a.active{
+    border-bottom: 3px solid #5D5FEF;
+}
