@@ -46,6 +46,8 @@ CallAPI("https://openapi.programming-hero.com/api/news/categories", function (re
             loadNews(event.target.getAttribute("data-id"));
         })
     });
+    
+    category.querySelector("li:first-child a").click();
 });
 
 function get_valid(str) {
@@ -56,7 +58,7 @@ function get_valid(str) {
 }
 
 function loadNews(id) {
-
+    posts_div.innerHTML = loader;
     CallAPI("https://openapi.programming-hero.com/api/news/category/" + id, function (res) {
         let html = "";
         if (res.status) {
@@ -102,7 +104,7 @@ function loadNews(id) {
             });
         }
         if (html == '') {
-            html = '<p class="text-center">Not news published.</p>';
+            html = '<p class="text-center">No news published.</p>';
         }
         posts_div.innerHTML = html;
     });
