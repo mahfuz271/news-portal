@@ -1,4 +1,8 @@
 const category = document.getElementById('category');
+const posts_div = document.getElementById('posts');
+const loader = `<div class="text-center col-12"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>`;
+posts_div.innerHTML = loader;
+category.innerHTML = loader;
 
 let CallAPI = (url, success) => {
     fetch(url)
@@ -42,3 +46,8 @@ CallAPI("https://openapi.programming-hero.com/api/news/categories", function (re
         })
     });
 });
+
+
+
+
+

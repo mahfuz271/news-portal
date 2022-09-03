@@ -1,5 +1,6 @@
 html,
 body {
+    min-height: 100vh;
     overflow-x: hidden;
     font-family: "Poppins", sans-serif;
     background-color: #F6F6F6;
