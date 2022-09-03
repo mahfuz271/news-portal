@@ -50,7 +50,7 @@
                 <div class="alert bg-white news_section text-center" id="total"></div>
             </div>
         </section>
-
+        <!-- sort by -->
         <section class="news_section mb-3" id="filter">
             <div class="container">
                 <div class="row text-center">
@@ -70,10 +70,66 @@
                 </div>
             </div>
         </section>
-
+        <!-- all news  -->
         <section class="news_section">
             <div class="container" id="posts">
 
+            </div>
+        </section>
+        <!-- blog menu -->
+        <section class="blog_section" style="display: none">
+            <div class="container">
+                <h2 class="my-5">The Difference Between Regular Functions and Arrow Functions</h2>
+                <p>Unlike regular functions, arrow functions do not have their own this . The value of this inside an
+                    arrow function remains the same throughout the lifecycle of the function and is always bound to the
+                    value of this in the closest non-arrow parent function.
+                </p>
+                <h2 class="my-5">Why do we use template string in Javascript?
+                </h2>
+                <p>Template strings are a powerful feature of modern JavaScript released in ES6. It lets us
+                    insert/interpolate variables and expressions into strings without needing to concatenate like in
+                    older versions of JavaScript. It allows us to create strings that are complex and contain dynamic
+                    elements.
+                </p>
+                <h2 class="my-5">Difference between var, let and const keywords in JavaScript </h2>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td><strong>var</strong></td>
+                            <td><strong>let</strong></td>
+                            <td><strong>const</strong></td>
+                        </tr>
+                        <tr>
+                            <td>The scope of a <i>var </i>variable is functional scope.</td>
+                            <td>The scope of a<i> let</i> variable is block scope.</td>
+                            <td>The scope of a <i>const</i> variable is block scope.</td>
+                        </tr>
+                        <tr>
+                            <td>It can be updated and re-declared into the scope.</td>
+                            <td>It can be updated but cannot be re-declared into the scope.</td>
+                            <td>It cannot be updated or re-declared into the scope.</td>
+                        </tr>
+                        <tr>
+                            <td>It can be declared without initialization.</td>
+                            <td>It can be declared without initialization.</td>
+                            <td>It cannot be declared without initialization.</td>
+                        </tr>
+                        <tr>
+                            <td>It can be accessed without initialization as its default value is “undefined”.</td>
+                            <td>It cannot be accessed without initialization otherwise it will give ‘referenceError’.
+                            </td>
+                            <td>It cannot be accessed without initialization, as it cannot be declared without
+                                initialization.</td>
+                        </tr>
+                        <tr>
+                            <td>hoisting done , with initializing as ‘default’ value</td>
+                            <td>Hoisting is done , but not initialized (this is the reason for error when we access the
+                                let variable before declaration/initialization</td>
+                            <td>Hoisting is done, but not initialized (this is the reason for error when we access the
+                                const variable before declaration/initialization</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
     </main>
