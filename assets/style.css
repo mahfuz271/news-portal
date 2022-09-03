@@ -11,3 +11,6 @@ body {
 .main_menu li a.active{
     border-bottom: 3px solid #5D5FEF;
 }
+.author-img{
+    width: 50px;
+}
