@@ -128,7 +128,7 @@ CallAPI("https://openapi.programming-hero.com/api/news/categories", function (re
 
     category.innerHTML = html;
 
-    //add click event
+    //add click event on categories
     category.querySelectorAll("li a").forEach((el) => {
         el.addEventListener('click', (event) => {
             //remove active class from all elemnt
@@ -138,6 +138,7 @@ CallAPI("https://openapi.programming-hero.com/api/news/categories", function (re
             //add active class on current item
             event.target.classList.add("active");
             sort_by.value = '1';
+            document.querySelector(".main_menu li:first-child a").click();
             loadNews(event.target.getAttribute("data-id"), event.target.innerText);
         })
     });
@@ -161,8 +162,8 @@ let newsHtml = (news_el) => {
                     <p class="card-text">${((item.details.length > 500) ? item.details.substr(0, 500) : item.details)}...
                     </p>
                     <div
-                        class="position-relative row row-cols-4 align-items-center justify-content-center text-center">
-                        <div class="text-start">
+                        class="position-relative row row-cols-lg-4 row-cols-2 align-items-center justify-content-center text-center">
+                        <div class="text-start text-lg-start text-md-center">
                             <img src="${item.author.img}"
                                 class="author-img img-fluid position-absolute" alt="">
                             <span class="d-inline-block ms-5 ps-2 lh-1">
@@ -171,13 +172,13 @@ let newsHtml = (news_el) => {
                                 </p>
                             </span>
                         </div>
-                        <span><i class="fa fa-eye"></i> ${item.total_view}</span>
-                        <div class="position-relative">
+                        <span class="d-none d-md-inline"><i class="fa fa-eye"></i> ${item.total_view}</span>
+                        <div class="position-relative d-none d-md-inline">
                             <div class="rating-box">
                                 <div class="rating" style="width:${item.rating.number * 10 + 50}%;"></div>
                             </div>
                         </div>
-                        <span><a href="#" data-id="${item.id}" class="btn btn-default fs-4 float-end"><i
+                        <span class="text-end text-lg-end text-md-center"><a href="#" data-id="${item.id}" class="btn btn-default fs-4"><i
                                     class="fa-solid fa-arrow-right"></i>
                             </a></span>
                     </div>
