@@ -25,6 +25,25 @@ let CallAPI = (url, success) => {
         });
 }
 
+//add click event on main menu
+document.querySelectorAll(".main_menu li a").forEach((el) => {
+    el.addEventListener('click', (event) => {
+        //remove active class from all elemnt
+        document.querySelectorAll(".main_menu li a").forEach((el) => {
+            el.classList.remove("active");
+        });
+        //add active class on current item
+        event.target.classList.add("active");
+        document.querySelectorAll(event.target.getAttribute("data-hide")).forEach((el) => {
+            el.style.display = "none";
+        });
+        document.querySelectorAll(event.target.getAttribute("data-show")).forEach((el) => {
+            el.style.display = "block";
+        });
+        
+    })
+});
+
 CallAPI("https://openapi.programming-hero.com/api/news/categories", function (res) {
     let html = "";
 

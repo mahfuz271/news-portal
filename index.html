@@ -37,8 +37,8 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto ms-lg-auto me-lg-3 mb-2 justify-content-center mb-md-0 main_menu">
-                    <li><a href="#" class="nav-link px-2 link-dark active">News</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Blog</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark active" data-show=".news_section" data-hide=".blog_section">News</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark" data-show=".blog_section" data-hide=".news_section">Blog</a></li>
                 </ul>
 
                 <div class="text-end">
@@ -53,11 +53,11 @@
         <div class="container">
             <ul class="nav nav-fill mb-3" id="category">
             </ul>
-            <div class="alert bg-white" id="total"></div>
+            <div class="alert bg-white news_section" id="total"></div>
         </div>
     </section>
 
-    <section>
+    <section class="news_section">
         <div class="container" id="posts">
             
         </div>
