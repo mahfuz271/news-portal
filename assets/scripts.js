@@ -3,6 +3,8 @@ const posts_div = document.getElementById('posts');
 const total_div = document.getElementById('total');
 const sort_by = document.getElementById('sort_by');
 const filter = document.getElementById('filter');
+const modalEl = document.getElementById('newsmodal');
+const modal = new bootstrap.Modal(modalEl);
 
 let news = [];
 const loader = `<div class="text-center col-12"><div class="spinner-border" role="status"></div></div>`;
@@ -55,7 +57,7 @@ function sort_by_lowest(a, b) {
 
 function get_valid(str) {
     if (str == null || str == '') {
-        str = 'No Data';
+        str = 'NoData';
     }
     return str;
 }
@@ -158,11 +160,10 @@ let newsHtml = (news_el) => {
             </div>
             <div class="col-lg-10">
                 <div class="card-body ps-3">
-                    <h5 class="card-title h2">${get_valid(item.title)}</h5>
+                    <a href="#" class="text-decoration-none text-dark" data-id="${item._id}"><h5 class="card-title h2">${get_valid(item.title)}</h5></a>
                     <p class="card-text">${((item.details.length > 500) ? item.details.substr(0, 500) : item.details)}...
                     </p>
-                    <div
-                        class="position-relative row row-cols-lg-4 row-cols-2 align-items-center justify-content-center text-center">
+                    <div class="position-relative row row-cols-lg-4 row-cols-2 align-items-center justify-content-center text-center">
                         <div class="text-start text-lg-start text-md-center">
                             <img src="${item.author.img}"
                                 class="author-img img-fluid position-absolute" alt="">
@@ -178,7 +179,7 @@ let newsHtml = (news_el) => {
                                 <div class="rating" style="width:${item.rating.number * 10 + 50}%;"></div>
                             </div>
                         </div>
-                        <span class="text-end text-lg-end text-md-center"><a href="#" data-id="${item.id}" class="btn btn-default fs-4"><i
+                        <span class="text-end text-lg-end text-md-center"><a href="#" data-id="${item._id}" class="btn btn-default fs-4"><i
                                     class="fa-solid fa-arrow-right"></i>
                             </a></span>
                     </div>
@@ -189,4 +190,43 @@ let newsHtml = (news_el) => {
 
     });
     posts_div.innerHTML = html;
+
+    if (html != '') {
+        document.querySelectorAll(".article a").forEach((el) => {
+            el.addEventListener('click', (event) => {
+                event.preventDefault();
+                let id = el.getAttribute("data-id");
+
+                CallAPI("https://openapi.programming-hero.com/api/news/" + id, function (res) {
+                    let html = '';
+                    if (res.status) {
+                        let item = res.data[0];
+                        html += `<div><img src="${item.image_url}" class="w-100"></div><h5 class="h2 mt-3 p-0">${get_valid(item.title)}</h5>
+                        <p class="my-3">${item.details}</p>
+                        <div class="position-relative row row-cols-lg-3 row-cols-1 align-items-center justify-content-center text-center">
+                            <div class="text-start text-lg-start text-md-center">
+                                <img src="${item.author.img}"
+                                    class="author-img img-fluid position-absolute" alt="">
+                                <span class="d-inline-block ms-5 ps-2 lh-1">
+                                    <h3 class="fs-6 fw-bolder">${get_valid(item.author.name)}</h3>
+                                    <p class="fs-6 m-0">${get_valid(item.author.published_date).split(" ")[0]}
+                                    </p>
+                                </span>
+                            </div>
+                            <span class="d-none d-md-inline"><i class="fa fa-eye"></i> ${item.total_view}</span>
+                            <div class="position-relative d-none d-md-inline">
+                                <div class="rating-box">
+                                    <div class="rating" style="width:${item.rating.number * 10 + 50}%;"></div>
+                                </div>
+                            </div>
+                        </div>`;
+                    }
+                    modalEl.querySelector('.modal-body').innerHTML = html;
+                    if (html != '') {
+                        modal.show();
+                    }
+                });
+            })
+        });
+    }
 }

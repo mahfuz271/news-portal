@@ -4,7 +4,8 @@ body {
     font-family: "Poppins", sans-serif;
     background-color: #F6F6F6;
 }
-main{
+
+main {
     min-height: 70vh;
 }
 
@@ -19,6 +20,7 @@ main{
 .author-img {
     width: 50px;
 }
+
 .rating-box {
     position: relative;
     vertical-align: middle;
