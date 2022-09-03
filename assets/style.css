@@ -1,9 +1,11 @@
 html,
 body {
-    min-height: 100vh;
     overflow-x: hidden;
     font-family: "Poppins", sans-serif;
     background-color: #F6F6F6;
+}
+main{
+    min-height: 70vh;
 }
 
 .nav li a.active {
@@ -17,7 +19,6 @@ body {
 .author-img {
     width: 50px;
 }
-
 .rating-box {
     position: relative;
     vertical-align: middle;
