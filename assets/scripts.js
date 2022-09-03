@@ -1,8 +1,10 @@
 const category = document.getElementById('category');
 const posts_div = document.getElementById('posts');
+const total_div = document.getElementById('total');
 const loader = `<div class="text-center col-12"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>`;
 posts_div.innerHTML = loader;
 category.innerHTML = loader;
+total_div.innerHTML = loader;
 
 let CallAPI = (url, success) => {
     fetch(url)
@@ -43,10 +45,10 @@ CallAPI("https://openapi.programming-hero.com/api/news/categories", function (re
             });
             //add active class on current item
             event.target.classList.add("active");
-            loadNews(event.target.getAttribute("data-id"));
+            loadNews(event.target.getAttribute("data-id"), event.target.innerText);
         })
     });
-    
+
     category.querySelector("li:first-child a").click();
 });
 
@@ -57,13 +59,16 @@ function get_valid(str) {
     return str;
 }
 
-function loadNews(id) {
+function loadNews(id, category_name) {
     posts_div.innerHTML = loader;
+    total_div.innerHTML = loader;
     CallAPI("https://openapi.programming-hero.com/api/news/category/" + id, function (res) {
         let html = "";
+        let total = 0;
         if (res.status) {
+            total = res.data.length;
             res.data.forEach((item) => {
-                html += `<div class="card mb-3">
+                html += `<div class="card mb-4">
                 <div class="row g-0">
                     <div class="col-lg-2">
                         <img src="${item.thumbnail_url}" class="img-fluid rounded-start h-100 w-100" alt="${item.title}">
@@ -85,13 +90,11 @@ function loadNews(id) {
                                     </span>
                                 </div>
                                 <span><i class="fa fa-eye"></i> ${item.total_view}</span>
-                                <span>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </span>
+                                <div class="position-relative">
+                                    <div class="rating-box">
+                                        <div class="rating" style="width:${item.rating.number * 10}%;"></div>
+                                    </div>
+                                </div>
                                 <span><a href="#" class="btn btn-default fs-4 float-end"><i
                                             class="fa-solid fa-arrow-right"></i>
                                     </a></span>
@@ -106,6 +109,7 @@ function loadNews(id) {
         if (html == '') {
             html = '<p class="text-center">No news published.</p>';
         }
+        total_div.innerHTML = `${total} items found for category ${category_name}`;
         posts_div.innerHTML = html;
     });
 

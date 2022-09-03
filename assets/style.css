@@ -5,12 +5,40 @@ body {
     font-family: "Poppins", sans-serif;
     background-color: #F6F6F6;
 }
-.nav li a.active{
+
+.nav li a.active {
     color: #5D5FEF !important;
 }
-.main_menu li a.active{
+
+.main_menu li a.active {
     border-bottom: 3px solid #5D5FEF;
 }
-.author-img{
+
+.author-img {
     width: 50px;
+}
+
+.rating-box {
+    position: relative;
+    vertical-align: middle;
+    font-family: FontAwesome;
+    display: inline-block;
+    color: #F68127;
+}
+
+.rating-box:before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.rating-box .rating {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #F68127;
+}
+
+.rating-box .rating:before {
+    content: "\f005 \f005 \f005 \f005 \f005";
 }
