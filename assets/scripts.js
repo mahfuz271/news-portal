@@ -11,6 +11,7 @@ posts_div.innerHTML = loader;
 category.innerHTML = loader;
 total_div.innerHTML = loader;
 
+// arrow function to get api data
 let CallAPI = (url, success) => {
     fetch(url)
         .then(async response => {
@@ -30,6 +31,7 @@ let CallAPI = (url, success) => {
         });
 }
 
+//common functions
 function sort_by_highest(a, b) {
     if (a.total_view > b.total_view) {
         return -1;
@@ -99,6 +101,7 @@ document.querySelectorAll(".main_menu li a").forEach((el) => {
     })
 });
 
+//sort by event
 sort_by.addEventListener('change', (event) => {
     let articles = news.slice();
     switch (event.target.value) {
@@ -113,6 +116,7 @@ sort_by.addEventListener('change', (event) => {
     newsHtml(articles);
 });
 
+//load categories
 CallAPI("https://openapi.programming-hero.com/api/news/categories", function (res) {
     let html = "";
 
@@ -141,6 +145,7 @@ CallAPI("https://openapi.programming-hero.com/api/news/categories", function (re
     category.querySelector("li:first-child a").click();
 });
 
+//news element loop
 let newsHtml = (news_el) => {
     posts_div.innerHTML = loader;
     let html = "";
